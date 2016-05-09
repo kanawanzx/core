@@ -11,28 +11,40 @@ class AS_PAGE extends AS_MAIN {
         $this->post    = new AS_POST();
         $this->project = new AS_POST_PROJECT();
     }
-
-    protected function as_page_get_sidebar_class()
+    private function as_page_get_sidebar_class()
     {
-        $full_col = '';
-        $last_col = '';
-        $cont_col = '';
-        if (as_option('as_blog_position_sidebar') == "left")
+        $as_blog_sidebar = rwmb_meta('as_blog_option');
+
+        $as_sidebar = '';
+        if (isset($as_blog_sidebar) && !empty($as_blog_sidebar) && ($as_blog_sidebar != 'default'))
         {
-            $last_col = ' dslc-last-col';
-            $cont_col = ' as-sidebar-border-right';
-        }
-        if (as_option('as_blog_position_sidebar') == "right")
-        {
-            $cont_col = ' as-sidebar-border-left';
-        }
-        if (as_option('as_blog_position_sidebar') == "full")
-        {
-            $full_col = ' dslc-12-col dslc-last-col';
+            $as_sidebar = $as_blog_sidebar;
         }
         else
         {
+            $as_sidebar = as_option('as_blog_position_sidebar');
+        }
+        $full_col = '';
+        $last_col = '';
+        $cont_col = '';
+        if (((as_option('as_blog_position_sidebar') == "left") && ($as_blog_sidebar == 'default')) | ($as_sidebar == "left"))
+        {
             $full_col = ' dslc-8-col';
+            $last_col = ' dslc-last-col';
+            $cont_col = ' as-sidebar-border-right';
+        }
+        if (((as_option('as_blog_position_sidebar') == "right") && ($as_blog_sidebar == 'default')) | ($as_sidebar == "right"))
+        {
+            $full_col = ' dslc-8-col';
+            $cont_col = ' as-sidebar-border-left';
+        }
+        if (($as_sidebar == "full"))
+        {
+            $full_col = ' dslc-12-col dslc-last-col as-fullwidth';
+        }
+        if (($as_sidebar == "fullwidth") && (as_option('as_blog_position_sidebar') == "fullwidth"))
+        {
+            $full_col = ' dslc-12-col dslc-last-col as-fullwidth';
         }
         return array(
             'full_col' => $full_col,
@@ -112,4 +124,5 @@ class AS_PAGE extends AS_MAIN {
         );
         return (wp_link_pages($as_pagination));
     }
+
 }

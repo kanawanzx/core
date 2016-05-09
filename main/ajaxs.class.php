@@ -9,7 +9,7 @@ class AS_AJAXS extends AS_MAIN {
     }
 
     public function as_like_post()
-    {
+    { 
         $data   = $_REQUEST['content'];
         $count  = get_post_meta($data['id'], 'as_like_count', true);
         $count++;
@@ -57,13 +57,13 @@ class AS_AJAXS extends AS_MAIN {
         $share_status   = get_the_title($project->ID);
         $excerpt_status = get_the_excerpt($project->ID);
 
-        $fb_share = '<li><a href="#" target="_blank" onClick="return dslc_social_share(400, 300, \'http://www.facebook.com/share.php?u=' . $project_permalink . '\')" class="as-facebook"><span class="dslc-icon dslc-icon-facebook"></span></a></li>';
+        $fb_share = '<li><a href="#" target="_blank" onClick="return as_social_share(400, 300, \'http://www.facebook.com/share.php?u=' . $project_permalink . '\')" class="as-facebook"><span class="dslc-icon dslc-icon-facebook"></span></a></li>';
 
-        $twitter_share = '<li><a href="#" onClick="return dslc_social_share(400, 300, \'https://twitter.com/home?status=' . $project_permalink . '\')" class="as-twitter"><span class="dslc-icon dslc-icon-twitter"></span></a></li>';
+        $twitter_share = '<li><a href="#" onClick="return as_social_share(400, 300, \'https://twitter.com/home?status=' . $project_permalink . '\')" class="as-twitter"><span class="dslc-icon dslc-icon-twitter"></span></a></li>';
 
         $google_share = '<li><a href="https://plus.google.com/share?url=' . $project_permalink . '&amp;title=' . $share_status . '" onclick="javascript:window.open(this.href,\'\', \'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=500\');return false;" class="as-google-plus"><span class="dslc-icon dslc-icon-google-plus"></span></a></li>';
 
-        $pinterest_share = '<li><a href="#" onClick="return dslc_social_share(400, 300, \'https://pinterest.com/pin/create/button/?url=' . $project_permalink . '&amp;media=' . esc_html($post_img) . '&amp;description=' . $share_status . '\')"  class="as-pinterest"><span class="dslc-icon dslc-icon-pinterest"></span></a></li>';
+        $pinterest_share = '<li><a href="#" onClick="return as_social_share(400, 300, \'https://pinterest.com/pin/create/button/?url=' . $project_permalink . '&amp;media=' . esc_html($post_img) . '&amp;description=' . $share_status . '\')"  class="as-pinterest"><span class="dslc-icon dslc-icon-pinterest"></span></a></li>';
 
 
         $btn_get = '<a href="' . $project_url . '" class="as-get-in-touch-prj-ajax">' . __('Visit Project', 'alenastudio') . '</a>';

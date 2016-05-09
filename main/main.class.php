@@ -58,11 +58,11 @@ if (!class_exists('AS_MAIN'))
         {
             if ($priv)
             {
-                add_action($this->config['main_class']['AJAX_PREFIX'] . $hook, $callback, $priority, $accepted_args);
+                add_action($this->config['main_class']['AJAX_PREFIX'] . $hook, array($this,$callback), $priority, $accepted_args);
             }
             if ($no_priv)
             {
-                add_action($this->config['main_class']['AJAX_NOPRIV_PREFIX'] . $hook, $callback, $priority, $accepted_args);
+                add_action($this->config['main_class']['AJAX_NOPRIV_PREFIX'] . $hook, array($this,$callback), $priority, $accepted_args);
             }
         }
 
