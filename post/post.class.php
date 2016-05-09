@@ -20,8 +20,8 @@ class AS_POST extends AS_MAIN {
 
     protected function as_post_render_comment()
     {
-        get_template_part('template/posts/post-author');
-        comments_template();
+        get_template_part('template/posts/post','author'); 
+        var_dump(comments_template()) ;
     }
 
     public function as_render_default()
@@ -95,11 +95,18 @@ class AS_POST extends AS_MAIN {
         <div <?php post_class('as-post-item'); ?>>
             <?php
             get_template_part('template/posts/post-date-format');
-            get_template_part('template/posts/post-content');
+            get_template_part('template/posts/post-content', $format);
             get_template_part('template/posts/post-title-meta');
             if ($format != 'quote')
             {
-               get_template_part('template/pages/page-blog-detail');
+                if (is_single())
+                {
+                    get_template_part('template/pages/page-blog-single');
+                }
+                else
+                {
+                    get_template_part('template/pages/page-blog-list');
+                }
             }
             ?>
         </div>	

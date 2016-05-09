@@ -7,7 +7,7 @@ class AS_PAGE_COMMENT extends AS_PAGE {
         $this->as_comment_check_script();
         $this->as_comment_check_password();
         if (comments_open())
-        {
+        {            
             ?>
             <div id="as-comment-wrapper">
                 <?php
