@@ -350,7 +350,7 @@ class AS_PAGE_HEADER extends AS_MAIN {
                     }
                     $as_breadcrumb   = ( rwmb_meta('as_breadcrumb_menu'));
                     $as_header_check = ( rwmb_meta('as_custom_page_metaboxes', 'type=checkbox_list'));
-                    if ((($as_breadcrumb != 1) | !(in_array('page_breadcrumb_options', $as_header_check))) && (as_option('as_option_breadcrumb_link', '1'))):
+                    if ((($as_breadcrumb != 1) || !(in_array('page_breadcrumb_options', $as_header_check))) && (as_option('as_option_breadcrumb_link', '1'))):
                         ?>    
                         <!-- Breadcrumb Content -->
                         <ul class="as-breadcrumb-link">
